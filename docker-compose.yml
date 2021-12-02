@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  mariadb-svc:
+    image: mariadb:10.5
+    # for debugging enable access to db server
+    ports:
+      - 4002:3306
+    volumes:
+      - maria_db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: quarkus-db
+      MYSQL_USER: quarkus-user
+      MYSQL_PASSWORD: quarkus-pwd
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+
+volumes:
+  maria_db_data:

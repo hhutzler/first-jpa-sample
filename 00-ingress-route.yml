@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: jpa-sample
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`jpa-app.quarkus.com`) 
+      services:
+        - kind: Service
+          name: quarkus-jpa-sample
+          namespace: quarkus-jpa-testing
+          port: 80
+  tls:
+    certResolver: le
+
